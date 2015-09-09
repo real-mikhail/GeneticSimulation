@@ -1,19 +1,18 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Person.cs" company="">
+// <copyright file="SelfishGene.cs" company="">
 //   
 // </copyright>
 // <summary>
-//   The person.
+//   The selfish gene.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GeneticSimulation
+namespace GeneticSimulation.Genes
 {
     /// <summary>
-    /// The person.
+    /// The selfish gene (affects on all creatures which has high probability of containing this gene - other words - family of creature). Another name - BloodGene.
     /// </summary>
-    public class Person
+    public class SelfishGene : Gene
     {
-
     }
 }

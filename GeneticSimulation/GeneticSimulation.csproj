@@ -43,10 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Gene.cs" />
-    <Compile Include="Person.cs" />
+    <Compile Include="Genes\AltruisticGene.cs" />
+    <Compile Include="Genes\CreatureLevelGene.cs" />
+    <Compile Include="Genes\CustomGene.cs" />
+    <Compile Include="Genes\Gene.cs" />
+    <Compile Include="Creature.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Genes\SelfishGene.cs" />
+    <Compile Include="Statistic.cs" />
+    <Compile Include="World.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

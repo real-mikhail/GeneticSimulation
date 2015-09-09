@@ -7,12 +7,12 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GeneticSimulation
+namespace GeneticSimulation.Genes
 {
     /// <summary>
     /// The gene.
     /// </summary>
-    public class Gene
+    public abstract class Gene
     {
     }
 }
