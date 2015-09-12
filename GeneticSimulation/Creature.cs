@@ -11,6 +11,7 @@ namespace GeneticSimulation
 {
     using System;
     using System.Diagnostics;
+    using System.Linq;
 
     using GeneticSimulation.Genes;
     using GeneticSimulation.Helpers;
@@ -88,6 +89,18 @@ namespace GeneticSimulation
                 throw new NotImplementedException();
             }
         }
+
+        /// <summary>
+        /// </summary>
+        public int SelfishGenes => this.genes.Count(g => g == Gene.SelfishGene);
+
+        /// <summary>
+        /// </summary>
+        public int AltruisticGenes => this.genes.Count(g => g == Gene.AltruisticGene);
+
+        /// <summary>
+        /// </summary>
+        public int CreatureLevelGenes => this.genes.Count(g => g == Gene.CreatureLevelGene);
 
         /// <summary>
         /// The mutate.

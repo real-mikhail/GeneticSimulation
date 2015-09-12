@@ -24,17 +24,22 @@ namespace GeneticSimulation
         /// <summary>
         /// The species.
         /// </summary>
-        private readonly List<Creature>[] species = new List<Creature>[8];
+        public readonly List<Creature>[] Species = new List<Creature>[8];
+
+        /// <summary>
+        /// The age.
+        /// </summary>
+        private int age = 1;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="World"/> class.
         /// </summary>
         public World()
         {
-            for (int i = 0; i < this.species.Length; i++)
+            for (int i = 0; i < this.Species.Length; i++)
             {
-                this.species[i] = new List<Creature>(65536);
-                this.species[i].AddRange(Enumerable.Range(0, 1024).Select(_ => new Creature(i)));
+                this.Species[i] = new List<Creature>(65536);
+                this.Species[i].AddRange(Enumerable.Range(0, 1024).Select(_ => new Creature(i)));
             }
         }
 
@@ -43,20 +48,14 @@ namespace GeneticSimulation
         /// </summary>
         /// <exception cref="NotImplementedException">
         /// </exception>
-        public Statistic Statistic
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
+        public Statistic Statistic => new Statistic(this.age, this);
 
         /// <summary>
         /// </summary>
         /// <param name="generations"></param>
         public void Run(int generations)
         {
-            for (int i = 0; i < generations; i++)
+            for (int i = 0; i < generations; i++, this.age++)
             {
                 this.SelectBest();
                 this.MakeChildren();
@@ -69,14 +68,14 @@ namespace GeneticSimulation
         /// </summary>
         private void SelectBest()
         {
-            var allCreatures = new List<Creature>(this.species.Sum(kind => kind.Count));
-            allCreatures.AddRange(this.species.SelectMany(kind => kind));
+            var allCreatures = new List<Creature>(this.Species.Sum(kind => kind.Count));
+            allCreatures.AddRange(this.Species.SelectMany(kind => kind));
             allCreatures =
                 allCreatures.OrderByDescending(creature => creature.Strength).Take(allCreatures.Count / 2).ToList();
-            for (int i = 0; i < this.species.Length; i++)
+            for (int i = 0; i < this.Species.Length; i++)
             {
-                this.species[i].Clear();
-                this.species[i].AddRange(allCreatures.Where(creature => creature.IdOfSpecies == i));
+                this.Species[i].Clear();
+                this.Species[i].AddRange(allCreatures.Where(creature => creature.IdOfSpecies == i));
             }
         }
 
@@ -87,36 +86,36 @@ namespace GeneticSimulation
         {
             Parallel.For(
                 0,
-                this.species.Length,
+                this.Species.Length,
                 i =>
                     {
-                        var temp = new List<Creature>(this.species[i].Count << 1);
+                        var temp = new List<Creature>(this.Species[i].Count << 1);
 
                         // Random parents (of same species) - for supporting different genes
-                        this.species[i].Shuffle();
+                        this.Species[i].Shuffle();
                         Random rnd = RandomProvider.GetThreadRandom();
-                        for (int j = 1; j < this.species[i].Count; j++)
+                        for (int j = 1; j < this.Species[i].Count; j++)
                         {
                             double value = rnd.NextDouble();
                             if (value < 0.33)
                             {
-                                temp.Add(new Creature(this.species[i][j - 1], this.species[i][j]));
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
                             }
                             else if (value < 0.665)
                             {
-                                temp.Add(new Creature(this.species[i][j - 1], this.species[i][j]));
-                                temp.Add(new Creature(this.species[i][j - 1], this.species[i][j]));
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
                             }
                             else
                             {
-                                temp.Add(new Creature(this.species[i][j - 1], this.species[i][j]));
-                                temp.Add(new Creature(this.species[i][j - 1], this.species[i][j]));
-                                temp.Add(new Creature(this.species[i][j - 1], this.species[i][j]));
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
                             }
                         }
 
-                        this.species[i].Clear();
-                        this.species[i] = temp;
+                        this.Species[i].Clear();
+                        this.Species[i] = temp;
                     });
         }
 
@@ -125,7 +124,7 @@ namespace GeneticSimulation
         /// </summary>
         private void Mutate()
         {
-            Parallel.ForEach(this.species, list => list.ForEach(creature => creature.Mutate()));
+            Parallel.ForEach(this.Species, list => list.ForEach(creature => creature.Mutate()));
         }
     }
 }
