@@ -9,23 +9,21 @@
 
 namespace GeneticSimulation.Genes
 {
-    using System.Net.NetworkInformation;
+    using System;
 
     /// <summary>
     /// The custom gene.
     /// </summary>
-    public class CustomGene : Gene
+    public class CustomGene
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CustomGene"/> class. 
-        /// The custom gene.
+        /// Initializes a new instance of the <see cref="CustomGene"/> class.
         /// </summary>
-        /// <exception cref="NetworkInformationException">
-        /// Condition.
+        /// <exception cref="NotImplementedException">
         /// </exception>
         public CustomGene()
         {
-            throw new NetworkInformationException();
+            throw new NotImplementedException("Will be available in future versions");
         }
     }
 }

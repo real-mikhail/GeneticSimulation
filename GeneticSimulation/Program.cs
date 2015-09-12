@@ -6,10 +6,8 @@
 //   The program.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
 namespace GeneticSimulation
 {
-    using System.Collections;
     using System.Linq;
 
     /// <summary>
@@ -22,6 +20,7 @@ namespace GeneticSimulation
         /// </summary>
         private static void Main()
         {
+            // TODO: Use contracts everywhere?
             var universe = new World();
             var list = Enumerable.Range(1, 8).Select(
                 _ =>
