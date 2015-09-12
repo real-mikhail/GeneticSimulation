@@ -21,6 +21,7 @@ namespace GeneticSimulation
         private static void Main()
         {
             // TODO: Use contracts everywhere?
+            // TODO: Fix comments and other stuff
             var universe = new World();
             var list = Enumerable.Range(1, 8).Select(
                 _ =>

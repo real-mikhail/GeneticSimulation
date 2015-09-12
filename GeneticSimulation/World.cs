@@ -12,6 +12,7 @@ namespace GeneticSimulation
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using GeneticSimulation.Helpers;
 
@@ -84,36 +85,39 @@ namespace GeneticSimulation
         /// </summary>
         private void MakeChildren()
         {
-            // TODO: Parallelize it
-            for (int i = 0; i < this.Species.Length; i++)
-            {
-                var temp = new List<Creature>(this.Species[i].Count << 1);
+            Parallel.For(
+                0,
+                this.Species.Length,
+                i =>
+                    {
+                        var temp = new List<Creature>(this.Species[i].Count << 1);
 
-                // Random parents (of same species) - for supporting different genes
-                this.Species[i].Shuffle();
-                for (int j = 1; j < this.Species[i].Count; j++)
-                {
-                    double rnd = MathHelper.Rnd.NextDouble();
-                    if (rnd < 0.33)
-                    {
-                        temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
-                    }
-                    else if (rnd < 0.665)
-                    {
-                        temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
-                        temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
-                    }
-                    else
-                    {
-                        temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
-                        temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
-                        temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
-                    }
-                }
+                        // Random parents (of same species) - for supporting different genes
+                        this.Species[i].Shuffle();
+                        Random rnd = RandomProvider.GetThreadRandom();
+                        for (int j = 1; j < this.Species[i].Count; j++)
+                        {
+                            double value = rnd.NextDouble();
+                            if (value < 0.33)
+                            {
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
+                            }
+                            else if (value < 0.665)
+                            {
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
+                            }
+                            else
+                            {
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
+                            }
+                        }
 
-                this.Species[i].Clear();
-                this.Species[i] = temp;
-            }
+                        this.Species[i].Clear();
+                        this.Species[i] = temp;
+                    });
         }
 
         /// <summary>
@@ -121,11 +125,7 @@ namespace GeneticSimulation
         /// </summary>
         private void Mutate()
         {
-            // TODO: Parallelize it
-            foreach (List<Creature> creatures in this.Species)
-            {
-                creatures.ForEach(creature => creature.Mutate());
-            }
+            Parallel.ForEach(this.Species, list => list.ForEach(creature => creature.Mutate()));
         }
     }
 }

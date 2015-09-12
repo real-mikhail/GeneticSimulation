@@ -9,6 +9,7 @@
 
 namespace GeneticSimulation.Helpers
 {
+    using System;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Runtime.CompilerServices;
@@ -28,10 +29,12 @@ namespace GeneticSimulation.Helpers
         /// </typeparam>
         public static void Shuffle<T>(this IList<T> list)
         {
+            Random rnd = RandomProvider.GetThreadRandom();
+
             // Fisher–Yates shuffle modern algorithm
             for (int i = list.Count - 1; i >= 1; i--)
             {
-                list.Swap(i, MathHelper.Rnd.Next(i));
+                list.Swap(i, rnd.Next(i));
             }
         }
 

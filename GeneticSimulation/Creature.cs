@@ -96,7 +96,7 @@ namespace GeneticSimulation
         {
             // Tries to change 6 genes with 50% probability
             int length = this.Genes.Length;
-            int rnd = MathHelper.Rnd.Next(length << 1);
+            int rnd = RandomProvider.GetThreadRandom().Next(length << 1);
             int limit = Math.Min(length, rnd + 6);
             for (; rnd < limit; rnd++)
             {

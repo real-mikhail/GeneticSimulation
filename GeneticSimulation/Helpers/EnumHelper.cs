@@ -27,7 +27,7 @@ namespace GeneticSimulation.Helpers
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Gene CreateRandomGene()
         {
-            return (Gene)(1 << MathHelper.Rnd.Next(3));
+            return (Gene)(1 << RandomProvider.GetThreadRandom().Next(3));
         }
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace GeneticSimulation.Helpers
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Gene ChooseRandomGene(Gene gene1, Gene gene2)
         {
-            return MathHelper.Rnd.NextDouble() < 0.5 ? gene1 : gene2;
+            return RandomProvider.GetThreadRandom().NextDouble() < 0.5 ? gene1 : gene2;
         }
     }
 }
