@@ -28,7 +28,7 @@ namespace GeneticSimulation
         /// <summary>
         /// The genes.
         /// </summary>
-        public readonly Gene[] Genes = new Gene[128];
+        private readonly Gene[] genes = new Gene[128];
 
         /// <summary>
         /// The mother.
@@ -49,9 +49,9 @@ namespace GeneticSimulation
         public Creature(int idOfSpecies)
         {
             this.IdOfSpecies = idOfSpecies;
-            for (int i = 0; i < this.Genes.Length; i++)
+            for (int i = 0; i < this.genes.Length; i++)
             {
-                this.Genes[i] = EnumHelper.CreateRandomGene();
+                this.genes[i] = EnumHelper.CreateRandomGene();
             }
         }
 
@@ -70,9 +70,9 @@ namespace GeneticSimulation
             this.mother = mommy;
             this.father = daddy;
             this.IdOfSpecies = mommy.IdOfSpecies;
-            for (int i = 0; i < this.Genes.Length; i++)
+            for (int i = 0; i < this.genes.Length; i++)
             {
-                this.Genes[i] = EnumHelper.ChooseRandomGene(mommy.Genes[i], daddy.Genes[i]);
+                this.genes[i] = EnumHelper.ChooseRandomGene(mommy.genes[i], daddy.genes[i]);
             }
         }
 
@@ -95,12 +95,12 @@ namespace GeneticSimulation
         public void Mutate()
         {
             // Tries to change 6 genes with 50% probability
-            int length = this.Genes.Length;
+            int length = this.genes.Length;
             int rnd = RandomProvider.GetThreadRandom().Next(length << 1);
             int limit = Math.Min(length, rnd + 6);
             for (; rnd < limit; rnd++)
             {
-                this.Genes[rnd] = EnumHelper.CreateRandomGene();
+                this.genes[rnd] = EnumHelper.CreateRandomGene();
             }
         }
     }

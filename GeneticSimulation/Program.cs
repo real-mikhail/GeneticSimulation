@@ -13,7 +13,7 @@ namespace GeneticSimulation
     /// <summary>
     /// The program.
     /// </summary>
-    internal class Program
+    internal static class Program
     {
         /// <summary>
         /// The main.
