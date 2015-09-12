@@ -86,7 +86,7 @@ namespace GeneticSimulation
         {
             get
             {
-                throw new NotImplementedException();
+                return 42;
             }
         }
 

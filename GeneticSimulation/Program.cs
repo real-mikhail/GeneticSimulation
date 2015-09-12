@@ -25,6 +25,7 @@ namespace GeneticSimulation
         {
             // TODO: Use contracts everywhere?
             // TODO: Fix comments and other stuff
+            // TODO: Fix GC hell (reduce memory traffic)
             var universe = new World();
             var list = Enumerable.Range(1, 8).Select(
                 _ =>
@@ -35,7 +36,7 @@ namespace GeneticSimulation
 
             PrintPopulationInfo(list);
             PrintGenesInfo(list);
-            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.White;
             Console.Write(Environment.NewLine);
             Console.Write(Environment.NewLine);
             Console.Write(Environment.NewLine);

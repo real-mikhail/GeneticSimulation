@@ -55,7 +55,7 @@ namespace GeneticSimulation.Helpers
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Swap<T>(this IList<T> list, int index1, int index2)
         {
-            Debug.Assert(index1 > 0 && index1 < list.Count && index2 > 0 && index2 < list.Count, "Out of range");
+            Debug.Assert(index1 >= 0 && index1 < list.Count && index2 >= 0 && index2 < list.Count, "Out of range");
             T temp = list[index1];
             list[index1] = list[index2];
             list[index2] = temp;
