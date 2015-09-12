@@ -30,10 +30,12 @@ namespace GeneticSimulation
             var list = Enumerable.Range(1, 8).Select(
                 _ =>
                     {
-                        universe.Run(128);
+                        universe.Run(13);
+                        Console.Write("-=>");
                         return universe.Statistic;
                     }).ToList();
 
+            Console.Write(Environment.NewLine);
             PrintPopulationInfo(list);
             PrintGenesInfo(list);
             Console.ForegroundColor = ConsoleColor.White;
@@ -56,11 +58,11 @@ namespace GeneticSimulation
             Console.ForegroundColor = ConsoleColor.Blue;
             
             // Print header
-            Console.WriteLine("\t\t\tPOPULATION\t\t\t");
+            Console.WriteLine("\t\t\tPOPULATION");
             Console.Write("Age");
             for (int i = 0; i < statistics[0].SpeciesNumber; i++)
             {
-                Console.Write("\t|\t{0}", i);
+                Console.Write("\t|{0}", i);
             }
 
             // Print data
@@ -72,7 +74,7 @@ namespace GeneticSimulation
                 Console.Write(statistic.Age);
                 foreach (int number in populationInfo)
                 {
-                    Console.Write("\t|\t{0}", number);
+                    Console.Write("\t|{0}", number);
                 }
             }
 
@@ -92,14 +94,14 @@ namespace GeneticSimulation
 
             // Print header
             Console.Write(Environment.NewLine);
-            Console.WriteLine("\t\t\tGENES\t\t\t");
-            Console.WriteLine("Age\t\t|\t\tSelfishGene\t\t|\t\tAltruisticGene\t\t|\t\tCreatureLevelGene");
+            Console.WriteLine("\t\t\tGENES");
+            Console.WriteLine("Age\t|SelfishGene\t|AltruisticGene\t|CreatureLevelGene");
 
             // Print data
             foreach (Statistic statistic in statistics)
             {
                 Console.WriteLine(
-                    "{0}\t\t|\t\t{1}\t\t|\t\t{2}\t\t|\t\t{3}",
+                    "{0}\t|{1:f4}\t\t|{2:f4}\t\t|{3:f4}",
                     statistic.Age,
                     statistic.SelfishPercentPerCreature,
                     statistic.AltruisticPercentPerCreature,
