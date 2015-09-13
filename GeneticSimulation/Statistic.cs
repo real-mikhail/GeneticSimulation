@@ -40,7 +40,7 @@ namespace MZ.GeneticSimulation
         /// </param>
         public Statistic(int age, World world)
         {
-            Contract.Requires<ArgumentNullException>(world != null);
+            // TODO: Check world for null
             this.Age = age;
             this.SpeciesNumber = world.Species.Length;
             this.PopulationInfo = new int[this.SpeciesNumber];

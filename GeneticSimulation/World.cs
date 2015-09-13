@@ -68,6 +68,7 @@ namespace MZ.GeneticSimulation
         /// </summary>
         private void SelectBest()
         {
+            // TODO: Parallelize it
             var allCreatures = new List<Creature>(this.Species.Sum(kind => kind.Count));
             allCreatures.AddRange(this.Species.SelectMany(kind => kind));
             allCreatures =
@@ -94,20 +95,26 @@ namespace MZ.GeneticSimulation
                         // Random parents (of same species) - for supporting different genes
                         this.Species[i].Shuffle();
                         Random rnd = RandomProvider.GetThreadRandom();
-                        for (int j = 1; j < this.Species[i].Count; j++)
+                        for (int j = 1; j < this.Species[i].Count; j += 2)
                         {
                             double value = rnd.NextDouble();
                             if (value < 0.33)
                             {
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
                                 temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
                             }
                             else if (value < 0.665)
                             {
                                 temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
                                 temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
                             }
                             else
                             {
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
                                 temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
                                 temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
                                 temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));

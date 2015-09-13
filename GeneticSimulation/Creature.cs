@@ -99,15 +99,26 @@ namespace MZ.GeneticSimulation
                 this.genes[i] = EnumHelper.ChooseRandomGene(mommy.genes[i], daddy.genes[i]);
             }
         }
-
+        
         /// <summary>
         /// Gets the strength.
         /// </summary>
         public int SummaryStrength
-            =>
-                this.ThisCreatureGenesStrength
-                + (int)this.world.Species[this.IdOfSpecies].Sum(creature => creature.AltruisticGenesOutStrength)
-                + (int)this.HelpFromRelations;
+        {
+            get
+            {
+                double sum = 0.0;
+                for (int i = 0; i < this.world.Species[this.IdOfSpecies].Count; i++)
+                {
+                    if (this.world.Species[this.IdOfSpecies][i] != this)
+                    {
+                        sum += this.world.Species[this.IdOfSpecies][i].AltruisticGenesOutStrength;
+                    }
+                }
+
+                return this.ThisCreatureGenesStrength + (int)sum + (int)this.HelpFromRelations;
+            }
+        }
 
         /// <summary>
         /// </summary>
@@ -129,9 +140,22 @@ namespace MZ.GeneticSimulation
         /// <summary>
         /// </summary>
         private double AltruisticGenesOutStrength
-            =>
-                this.genes.Sum(g => g == Gene.AltruisticGene ? GeneStrength >> 1 : 0)
-                / (this.world.Species[this.IdOfSpecies].Count - 1);
+        {
+            get
+            {
+                int sum = 0;
+                for (int i = 0; i < this.genes.Length; i++)
+                {
+                    Gene gene = this.genes[i];
+                    if (gene == Gene.AltruisticGene)
+                    {
+                        sum += GeneStrength >> 1;
+                    }
+                }
+
+                return (double)sum / (this.world.Species[this.IdOfSpecies].Count - 1);
+            }
+        }
 
         /// <summary>
         /// </summary>
