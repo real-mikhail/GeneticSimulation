@@ -24,6 +24,10 @@ namespace MZ.GeneticSimulation
     internal static class Program
     {
         /// <summary>
+        /// </summary>
+        private const int IterationsNumber = 128;
+
+        /// <summary>
         /// The main.
         /// </summary>
         private static void Main()
@@ -32,11 +36,11 @@ namespace MZ.GeneticSimulation
             // TODO: Fix GC hell (reduce memory traffic)
             var universe = new World();
             var list = new List<Statistic>(new[] { universe.Statistic });
-            list.AddRange(Enumerable.Range(1, 128).Select(
-                _ =>
+            list.AddRange(Enumerable.Range(1, IterationsNumber).Select(
+                i =>
                     {
                         universe.Run(8);
-                        Write("-=>");
+                        WriteLine($"<=-\t{i}/{IterationsNumber}\t-=>");
                         return universe.Statistic;
                     }));
 
