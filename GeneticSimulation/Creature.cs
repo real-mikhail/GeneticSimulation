@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GeneticSimulation
+namespace MZ.GeneticSimulation
 {
     using System;
     using System.Collections.Generic;
@@ -15,10 +15,8 @@ namespace GeneticSimulation
     using System.Diagnostics.Contracts;
     using System.Linq;
 
-    using GeneticSimulation.Genes;
-    using GeneticSimulation.Helpers;
-
-    using static System.Diagnostics.Contracts.Contract;
+    using MZ.GeneticSimulation.Genes;
+    using MZ.GeneticSimulation.Helpers;
 
     /// <summary>
     /// The person.
@@ -68,8 +66,8 @@ namespace GeneticSimulation
         /// </param>
         public Creature(int idOfSpecies, World world)
         {
-            Requires(world != null);
-            Ensures(this.IdOfSpecies == idOfSpecies);
+            Contract.Requires<ArgumentNullException>(world != null);
+            Contract.Ensures(this.IdOfSpecies == idOfSpecies);
             this.IdOfSpecies = idOfSpecies;
             this.world = world;
             for (int i = 0; i < this.genes.Length; i++)
@@ -105,8 +103,6 @@ namespace GeneticSimulation
         /// <summary>
         /// Gets the strength.
         /// </summary>
-        /// <exception cref="NotImplementedException">
-        /// </exception>
         public int SummaryStrength
             =>
                 this.ThisCreatureGenesStrength
@@ -201,8 +197,11 @@ namespace GeneticSimulation
 
         /// <summary>
         /// </summary>
-        /// <param name="whoAreYou"></param>
-        /// <returns></returns>
+        /// <param name="whoAreYou">
+        /// </param>
+        /// <returns>
+        /// The <see cref="double"/>.
+        /// </returns>
         private double GetSelfishGenesOutStrength(Relation whoAreYou)
         {
             Creature mommy = this.mother;

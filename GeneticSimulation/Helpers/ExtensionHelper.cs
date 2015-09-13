@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GeneticSimulation.Helpers
+namespace MZ.GeneticSimulation.Helpers
 {
     using System;
     using System.Collections.Generic;

@@ -6,8 +6,7 @@
 //   The statistic.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-namespace GeneticSimulation
+namespace MZ.GeneticSimulation
 {
     using System;
     using System.Collections.Generic;
@@ -49,8 +48,8 @@ namespace GeneticSimulation
             int altruisticGenes = 0;
             int creatureLevelGenes = 0;
             Parallel.For(
-                0,
-                world.Species.Length,
+                0, 
+                world.Species.Length, 
                 i =>
                     {
                         int threadSelfishGenes = 0;

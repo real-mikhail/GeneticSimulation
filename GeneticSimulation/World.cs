@@ -6,8 +6,7 @@
 //   The world.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-
-namespace GeneticSimulation
+namespace MZ.GeneticSimulation
 {
     using System;
     using System.Collections.Generic;
@@ -15,7 +14,7 @@ namespace GeneticSimulation
     using System.Linq;
     using System.Threading.Tasks;
 
-    using GeneticSimulation.Helpers;
+    using MZ.GeneticSimulation.Helpers;
 
     /// <summary>
     /// The world.
@@ -47,13 +46,12 @@ namespace GeneticSimulation
         /// <summary>
         /// Gets the statistic.
         /// </summary>
-        /// <exception cref="NotImplementedException">
-        /// </exception>
         public Statistic Statistic => new Statistic(this.age, this);
 
         /// <summary>
         /// </summary>
-        /// <param name="generations"></param>
+        /// <param name="generations">
+        /// </param>
         public void Run(int generations)
         {
             for (int i = 0; i < generations; i++, this.age++)
@@ -87,8 +85,8 @@ namespace GeneticSimulation
         private void MakeChildren()
         {
             Parallel.For(
-                0,
-                this.Species.Length,
+                0, 
+                this.Species.Length, 
                 i =>
                     {
                         var temp = new List<Creature>(this.Species[i].Count << 1);

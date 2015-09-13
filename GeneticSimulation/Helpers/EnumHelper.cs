@@ -7,11 +7,11 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace GeneticSimulation.Helpers
+namespace MZ.GeneticSimulation.Helpers
 {
     using System.Runtime.CompilerServices;
 
-    using GeneticSimulation.Genes;
+    using MZ.GeneticSimulation.Genes;
 
     /// <summary>
     /// The enum helper.

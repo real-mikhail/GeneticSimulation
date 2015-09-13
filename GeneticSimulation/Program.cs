@@ -6,7 +6,7 @@
 //   The program.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace GeneticSimulation
+namespace MZ.GeneticSimulation
 {
     using System;
     using System.Collections.Generic;
