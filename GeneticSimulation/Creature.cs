@@ -12,10 +12,13 @@ namespace GeneticSimulation
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Diagnostics.Contracts;
     using System.Linq;
 
     using GeneticSimulation.Genes;
     using GeneticSimulation.Helpers;
+
+    using static System.Diagnostics.Contracts.Contract;
 
     /// <summary>
     /// The person.
@@ -65,6 +68,8 @@ namespace GeneticSimulation
         /// </param>
         public Creature(int idOfSpecies, World world)
         {
+            Requires(world != null);
+            Ensures(this.IdOfSpecies == idOfSpecies);
             this.IdOfSpecies = idOfSpecies;
             this.world = world;
             for (int i = 0; i < this.genes.Length; i++)
@@ -82,17 +87,14 @@ namespace GeneticSimulation
         /// <param name="daddy">
         /// The daddy.
         /// </param>
-        /// <param name="world">
-        /// The world.
-        /// </param>
-        public Creature(Creature mommy, Creature daddy, World world)
+        public Creature(Creature mommy, Creature daddy)
         {
             Debug.Assert(mommy.IdOfSpecies == daddy.IdOfSpecies, "Interspecies relation are FORBIDDEN!!!");
             this.mother = mommy;
             this.father = daddy;
             mommy.childs.Add(this);
             daddy.childs.Add(this);
-            this.world = world;
+            this.world = mommy.world;
             this.IdOfSpecies = mommy.IdOfSpecies;
             for (int i = 0; i < this.genes.Length; i++)
             {

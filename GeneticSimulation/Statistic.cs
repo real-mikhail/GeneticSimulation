@@ -9,7 +9,9 @@
 
 namespace GeneticSimulation
 {
+    using System;
     using System.Collections.Generic;
+    using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -39,6 +41,7 @@ namespace GeneticSimulation
         /// </param>
         public Statistic(int age, World world)
         {
+            Contract.Requires<ArgumentNullException>(world != null);
             this.Age = age;
             this.SpeciesNumber = world.Species.Length;
             this.PopulationInfo = new int[this.SpeciesNumber];

@@ -13,6 +13,9 @@ namespace GeneticSimulation
     using System.Diagnostics;
     using System.Linq;
 
+    using static System.Console;
+    using static System.Diagnostics.Contracts.Contract;
+
     /// <summary>
     /// The program.
     /// </summary>
@@ -23,7 +26,6 @@ namespace GeneticSimulation
         /// </summary>
         private static void Main()
         {
-            // TODO: Use contracts everywhere?
             // TODO: Fix comments, indentation and other stuff
             // TODO: Fix GC hell (reduce memory traffic), introduce caching
             var universe = new World();
@@ -31,19 +33,19 @@ namespace GeneticSimulation
                 _ =>
                     {
                         universe.Run(16);
-                        Console.Write("-=>");
+                        Write("-=>");
                         return universe.Statistic;
                     }).ToList();
 
-            Console.Write(Environment.NewLine);
+            Write(Environment.NewLine);
             PrintPopulationInfo(list);
             PrintGenesInfo(list);
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.Write(Environment.NewLine);
-            Console.Write(Environment.NewLine);
-            Console.Write(Environment.NewLine);
-            Console.WriteLine("Press enter for exit...");
-            Console.ReadLine();
+            ForegroundColor = ConsoleColor.White;
+            Write(Environment.NewLine);
+            Write(Environment.NewLine);
+            Write(Environment.NewLine);
+            WriteLine("Press enter for exit...");
+            ReadLine();
         }
 
         /// <summary>
@@ -54,31 +56,32 @@ namespace GeneticSimulation
         /// </param>
         private static void PrintPopulationInfo(List<Statistic> statistics)
         {
-            Debug.Assert(statistics.Count > 0, "There is no any statistic. WTF!");
-            Console.ForegroundColor = ConsoleColor.Blue;
+            Requires<ArgumentNullException>(statistics != null);
+            Requires<ArgumentException>(statistics.Count > 0, "There is no any statistic. WTF!");
+            ForegroundColor = ConsoleColor.Blue;
             
             // Print header
-            Console.WriteLine("\t\t\tPOPULATION");
-            Console.Write("Age");
+            WriteLine("\t\t\tPOPULATION");
+            Write("Age");
             for (int i = 0; i < statistics[0].SpeciesNumber; i++)
             {
-                Console.Write("\t|{0}", i);
+                Write("\t|{0}", i);
             }
 
             // Print data
             foreach (Statistic statistic in statistics)
             {
-                Console.Write(Environment.NewLine);
+                Write(Environment.NewLine);
                 int[] populationInfo = statistic.PopulationInfo;
                 Debug.Assert(populationInfo.Length == statistic.SpeciesNumber, "There is no information about some species");
-                Console.Write(statistic.Age);
+                Write(statistic.Age);
                 foreach (int number in populationInfo)
                 {
-                    Console.Write("\t|{0}", number);
+                    Write("\t|{0}", number);
                 }
             }
 
-            Console.Write(Environment.NewLine);
+            Write(Environment.NewLine);
         }
 
         /// <summary>
@@ -89,18 +92,19 @@ namespace GeneticSimulation
         /// </param>
         private static void PrintGenesInfo(List<Statistic> statistics)
         {
-            Debug.Assert(statistics.Count > 0, "There is no any statistic. WTF!");
-            Console.ForegroundColor = ConsoleColor.Yellow;
+            Requires<ArgumentNullException>(statistics != null);
+            Requires<ArgumentException>(statistics.Count > 0, "There is no any statistic. WTF!");
+            ForegroundColor = ConsoleColor.Yellow;
 
             // Print header
-            Console.Write(Environment.NewLine);
-            Console.WriteLine("\t\t\tGENES");
-            Console.WriteLine("Age\t|SelfishGene\t|AltruisticGene\t|CreatureLevelGene");
+            Write(Environment.NewLine);
+            WriteLine("\t\t\tGENES");
+            WriteLine("Age\t|SelfishGene\t|AltruisticGene\t|CreatureLevelGene");
 
             // Print data
             foreach (Statistic statistic in statistics)
             {
-                Console.WriteLine(
+                WriteLine(
                     "{0}\t|{1:f4}\t\t|{2:f4}\t\t|{3:f4}",
                     statistic.Age,
                     statistic.SelfishPercentPerCreature,

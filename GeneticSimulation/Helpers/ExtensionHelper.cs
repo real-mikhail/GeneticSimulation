@@ -12,6 +12,7 @@ namespace GeneticSimulation.Helpers
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Diagnostics.Contracts;
     using System.Runtime.CompilerServices;
 
     /// <summary>
@@ -29,6 +30,7 @@ namespace GeneticSimulation.Helpers
         /// </typeparam>
         public static void Shuffle<T>(this IList<T> list)
         {
+            Contract.Requires<ArgumentNullException>(list != null);
             Random rnd = RandomProvider.GetThreadRandom();
 
             // Fisher–Yates shuffle modern algorithm

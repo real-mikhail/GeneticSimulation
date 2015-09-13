@@ -101,18 +101,18 @@ namespace GeneticSimulation
                             double value = rnd.NextDouble();
                             if (value < 0.33)
                             {
-                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j], this));
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
                             }
                             else if (value < 0.665)
                             {
-                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j], this));
-                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j], this));
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
                             }
                             else
                             {
-                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j], this));
-                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j], this));
-                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j], this));
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
                             }
                         }
 
