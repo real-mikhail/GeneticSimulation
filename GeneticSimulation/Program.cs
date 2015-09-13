@@ -30,10 +30,10 @@ namespace MZ.GeneticSimulation
             // TODO: Fix GC hell (reduce memory traffic)
             var universe = new World();
             var list = new List<Statistic>(new[] { universe.Statistic });
-            list.AddRange(Enumerable.Range(1, 16).Select(
+            list.AddRange(Enumerable.Range(1, 128).Select(
                 _ =>
                     {
-                        universe.Run(16);
+                        universe.Run(8);
                         Write("-=>");
                         return universe.Statistic;
                     }));

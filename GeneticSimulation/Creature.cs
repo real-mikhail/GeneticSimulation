@@ -17,8 +17,8 @@ namespace MZ.GeneticSimulation
 
     using MZ.GeneticSimulation.Genes;
     using MZ.GeneticSimulation.Helpers;
-
-    // TODO: Introduce caching
+    
+    // TODO: Remove link to mother.mother.mother and etc.
     /// <summary>
     /// The person.
     /// </summary>
@@ -109,12 +109,24 @@ namespace MZ.GeneticSimulation
             get
             {
                 double sum = 0.0;
-                for (int i = 0; i < this.world.Species[this.IdOfSpecies].Count; i++)
+                World world = this.world;
+                string cacheKey = $"AltruisticGenesOutStrength{this.IdOfSpecies}";
+                object cachedValue = Cache.Get(cacheKey, world.Age);
+                if (cachedValue != null)
                 {
-                    if (this.world.Species[this.IdOfSpecies][i] != this)
+                    sum = (double)cachedValue;
+                }
+                else
+                {
+                    for (int i = 0; i < world.Species[this.IdOfSpecies].Count; i++)
                     {
-                        sum += this.world.Species[this.IdOfSpecies][i].AltruisticGenesOutStrength;
+                        if (world.Species[this.IdOfSpecies][i] != this)
+                        {
+                            sum += world.Species[this.IdOfSpecies][i].AltruisticGenesOutStrength;
+                        }
                     }
+
+                    Cache.Put(cacheKey, world.Age, sum);
                 }
 
                 return this.ThisCreatureGenesStrength + (int)sum + (int)this.HelpFromRelations;

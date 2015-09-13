@@ -46,7 +46,12 @@ namespace MZ.GeneticSimulation
         /// <summary>
         /// Gets the statistic.
         /// </summary>
-        public Statistic Statistic => new Statistic(this.age, this);
+        public Statistic Statistic => new Statistic(this.Age, this);
+
+        /// <summary>
+        /// The age.
+        /// </summary>
+        public int Age => this.age;
 
         /// <summary>
         /// </summary>
@@ -54,7 +59,7 @@ namespace MZ.GeneticSimulation
         /// </param>
         public void Run(int generations)
         {
-            for (int i = 0; i < generations; i++, this.age++)
+            for (int i = 0; i < generations; i++, this.age = this.Age + 1)
             {
                 this.SelectBest();
                 this.MakeChildren();
