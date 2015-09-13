@@ -27,15 +27,16 @@ namespace MZ.GeneticSimulation
         private static void Main()
         {
             // TODO: Fix comments, indentation and other stuff
-            // TODO: Fix GC hell (reduce memory traffic), introduce caching
+            // TODO: Fix GC hell (reduce memory traffic)
             var universe = new World();
-            var list = Enumerable.Range(1, 8).Select(
+            var list = new List<Statistic>(new[] { universe.Statistic });
+            list.AddRange(Enumerable.Range(1, 16).Select(
                 _ =>
                     {
                         universe.Run(16);
                         Write("-=>");
                         return universe.Statistic;
-                    }).ToList();
+                    }));
 
             Write(Environment.NewLine);
             PrintPopulationInfo(list);

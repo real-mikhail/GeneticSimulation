@@ -18,6 +18,7 @@ namespace MZ.GeneticSimulation
     using MZ.GeneticSimulation.Genes;
     using MZ.GeneticSimulation.Helpers;
 
+    // TODO: Introduce caching
     /// <summary>
     /// The person.
     /// </summary>
