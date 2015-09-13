@@ -11,7 +11,7 @@ namespace MZ.GeneticSimulation.Helpers
 {
     using System.Runtime.CompilerServices;
 
-    using MZ.GeneticSimulation.Genes;
+    using MZ.GeneticSimulation.DataModel.Genes;
 
     /// <summary>
     /// The enum helper.

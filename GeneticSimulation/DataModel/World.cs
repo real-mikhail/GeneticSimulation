@@ -6,7 +6,7 @@
 //   The world.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
-namespace MZ.GeneticSimulation
+namespace MZ.GeneticSimulation.DataModel
 {
     using System;
     using System.Collections.Generic;

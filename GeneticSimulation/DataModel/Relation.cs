@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace MZ.GeneticSimulation
+namespace MZ.GeneticSimulation.DataModel
 {
     /// <summary>
     /// The relation.

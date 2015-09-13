@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace MZ.GeneticSimulation.Genes
+namespace MZ.GeneticSimulation.DataModel.Genes
 {
     using System;
 

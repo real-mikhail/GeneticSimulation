@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace MZ.GeneticSimulation
+namespace MZ.GeneticSimulation.DataModel
 {
     using System;
     using System.Collections.Generic;
@@ -15,9 +15,9 @@ namespace MZ.GeneticSimulation
     using System.Diagnostics.Contracts;
     using System.Linq;
 
-    using MZ.GeneticSimulation.Genes;
+    using MZ.GeneticSimulation.DataModel.Genes;
     using MZ.GeneticSimulation.Helpers;
-    
+
     // TODO: Remove link to mother.mother.mother and etc.
     /// <summary>
     /// The person.

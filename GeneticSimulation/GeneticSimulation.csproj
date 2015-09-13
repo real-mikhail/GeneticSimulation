@@ -150,15 +150,15 @@
     <Compile Include="Helpers\Cache.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\ExtensionHelper.cs" />
-    <Compile Include="Genes\CustomGene.cs" />
-    <Compile Include="Genes\Gene.cs" />
-    <Compile Include="Creature.cs" />
+    <Compile Include="DataModel\Genes\CustomGene.cs" />
+    <Compile Include="DataModel\Genes\Gene.cs" />
+    <Compile Include="DataModel\Creature.cs" />
     <Compile Include="Helpers\RandomProvider.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Relation.cs" />
+    <Compile Include="DataModel\Relation.cs" />
     <Compile Include="Statistic.cs" />
-    <Compile Include="World.cs" />
+    <Compile Include="DataModel\World.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -175,6 +175,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

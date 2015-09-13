@@ -13,6 +13,8 @@ namespace MZ.GeneticSimulation
     using System.Diagnostics;
     using System.Linq;
 
+    using MZ.GeneticSimulation.DataModel;
+
     using static System.Console;
     using static System.Diagnostics.Contracts.Contract;
 

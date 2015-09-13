@@ -6,13 +6,14 @@
 //   The statistic.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace MZ.GeneticSimulation
 {
-    using System;
     using System.Collections.Generic;
-    using System.Diagnostics.Contracts;
     using System.Threading;
     using System.Threading.Tasks;
+
+    using MZ.GeneticSimulation.DataModel;
 
     /// <summary>
     /// The statistic.
