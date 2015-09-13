@@ -34,13 +34,18 @@ namespace MZ.GeneticSimulation
         {
             // TODO: Fix comments, indentation and other stuff
             // TODO: Fix GC hell (reduce memory traffic)
+            DateTime begin = DateTime.UtcNow;
+            DateTime previous = DateTime.UtcNow;
             var universe = new World();
             var list = new List<Statistic>(new[] { universe.Statistic });
             list.AddRange(Enumerable.Range(1, IterationsNumber).Select(
                 i =>
                     {
                         universe.Run(8);
-                        WriteLine($"<=-\t{i}/{IterationsNumber}\t-=>");
+                        DateTime current = DateTime.UtcNow;
+                        WriteLine(
+                            $"[{(current - begin).TotalSeconds:000.00}|+{(current - previous).TotalSeconds:000.00}]\t<=-\t{i}/{IterationsNumber}\t-=>");
+                        previous = current;
                         return universe.Statistic;
                     }));
 
