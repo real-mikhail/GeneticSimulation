@@ -17,8 +17,7 @@ namespace MZ.GeneticSimulation.DataModel
 
     using MZ.GeneticSimulation.DataModel.Genes;
     using MZ.GeneticSimulation.Helpers;
-
-    // TODO: Remove link to mother.mother.mother and etc.
+    
     /// <summary>
     /// The person.
     /// </summary>
@@ -40,7 +39,7 @@ namespace MZ.GeneticSimulation.DataModel
 
         /// <summary>
         /// </summary>
-        private readonly List<Creature> childs = new List<Creature>(4);
+        private readonly List<Creature> childs = new List<Creature>(8);
 
         /// <summary>
         /// </summary>
@@ -49,12 +48,12 @@ namespace MZ.GeneticSimulation.DataModel
         /// <summary>
         /// The mother.
         /// </summary>
-        private readonly Creature mother;
+        private Creature mother;
 
         /// <summary>
         /// The father.
         /// </summary>
-        private readonly Creature father;
+        private Creature father;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Creature"/> class.
@@ -229,6 +228,35 @@ namespace MZ.GeneticSimulation.DataModel
             for (; rnd < limit; rnd++)
             {
                 this.genes[rnd] = EnumHelper.CreateRandomGene();
+            }
+        }
+
+        /// <summary>
+        /// </summary>
+        public void BreakRedundantConnections()
+        {
+            Creature mommy = this.mother;
+            Creature daddy = this.father;
+
+            // TODO: I suppose it is a .NET bug (we should not clear list of childs?) Fix it and send to github/dotnet
+            if (mommy?.mother?.mother != null)
+            {
+                mommy.mother.mother?.childs.Clear();
+                mommy.mother.mother = null;
+                mommy.mother.father?.childs.Clear();
+                mommy.mother.father = null;
+                mommy.father.mother?.childs.Clear();
+                mommy.father.mother = null;
+                mommy.father.father?.childs.Clear();
+                mommy.father.father = null;
+                daddy.mother.mother?.childs.Clear();
+                daddy.mother.mother = null;
+                daddy.mother.father?.childs.Clear();
+                daddy.mother.father = null;
+                daddy.father.mother?.childs.Clear();
+                daddy.father.mother = null;
+                daddy.father.father?.childs.Clear();
+                daddy.father.father = null;
             }
         }
 

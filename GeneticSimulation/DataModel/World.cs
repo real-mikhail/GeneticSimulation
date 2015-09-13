@@ -6,6 +6,7 @@
 //   The world.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
+
 namespace MZ.GeneticSimulation.DataModel
 {
     using System;
@@ -73,13 +74,14 @@ namespace MZ.GeneticSimulation.DataModel
         /// </summary>
         private void SelectBest()
         {
-            // TODO: Parallelize it
+            // TODO: Parallelize it and optimize
             var allCreatures = new List<Creature>(this.Species.Sum(kind => kind.Count));
             allCreatures.AddRange(this.Species.SelectMany(kind => kind));
             allCreatures =
                 allCreatures.OrderByDescending(creature => creature.SummaryStrength).Take(allCreatures.Count >> 1).ToList();
             for (int i = 0; i < this.Species.Length; i++)
             {
+                this.Species[i].ForEach(creature => creature.BreakRedundantConnections());
                 this.Species[i].Clear();
                 this.Species[i].AddRange(allCreatures.Where(creature => creature.IdOfSpecies == i));
             }
@@ -126,6 +128,7 @@ namespace MZ.GeneticSimulation.DataModel
                             }
                         }
 
+                        this.Species[i].ForEach(creature => creature.BreakRedundantConnections());
                         this.Species[i].Clear();
                         this.Species[i] = temp;
                     });
