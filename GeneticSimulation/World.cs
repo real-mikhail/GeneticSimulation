@@ -11,6 +11,7 @@ namespace GeneticSimulation
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -39,7 +40,7 @@ namespace GeneticSimulation
             for (int i = 0; i < this.Species.Length; i++)
             {
                 this.Species[i] = new List<Creature>(65536);
-                this.Species[i].AddRange(Enumerable.Range(0, 1024).Select(_ => new Creature(i)));
+                this.Species[i].AddRange(Enumerable.Range(0, 1024).Select(_ => new Creature(i, this)));
             }
         }
 
@@ -60,6 +61,7 @@ namespace GeneticSimulation
                 this.SelectBest();
                 this.MakeChildren();
                 this.Mutate();
+                Debug.Print("Age: {0}", i);
             }
         }
 
@@ -71,7 +73,7 @@ namespace GeneticSimulation
             var allCreatures = new List<Creature>(this.Species.Sum(kind => kind.Count));
             allCreatures.AddRange(this.Species.SelectMany(kind => kind));
             allCreatures =
-                allCreatures.OrderByDescending(creature => creature.Strength).Take(allCreatures.Count / 2).ToList();
+                allCreatures.OrderByDescending(creature => creature.SummaryStrength).Take(allCreatures.Count >> 1).ToList();
             for (int i = 0; i < this.Species.Length; i++)
             {
                 this.Species[i].Clear();
@@ -99,18 +101,18 @@ namespace GeneticSimulation
                             double value = rnd.NextDouble();
                             if (value < 0.33)
                             {
-                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j], this));
                             }
                             else if (value < 0.665)
                             {
-                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
-                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j], this));
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j], this));
                             }
                             else
                             {
-                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
-                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
-                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j], this));
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j], this));
+                                temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j], this));
                             }
                         }
 

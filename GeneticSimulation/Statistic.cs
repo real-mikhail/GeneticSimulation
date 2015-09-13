@@ -10,6 +10,7 @@
 namespace GeneticSimulation
 {
     using System.Collections.Generic;
+    using System.Threading;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -38,7 +39,6 @@ namespace GeneticSimulation
         /// </param>
         public Statistic(int age, World world)
         {
-            object sync = new object();
             this.Age = age;
             this.SpeciesNumber = world.Species.Length;
             this.PopulationInfo = new int[this.SpeciesNumber];
@@ -64,12 +64,9 @@ namespace GeneticSimulation
                                 threadCreatureLevelGenes += creature.CreatureLevelGenes;
                             }
 
-                            lock (sync)
-                            {
-                                selfishGenes += threadSelfishGenes;
-                                altruisticGenes += threadAltruisticGenes;
-                                creatureLevelGenes += threadCreatureLevelGenes;
-                            }
+                            Interlocked.Add(ref selfishGenes, threadSelfishGenes);
+                            Interlocked.Add(ref altruisticGenes, threadAltruisticGenes);
+                            Interlocked.Add(ref creatureLevelGenes, threadCreatureLevelGenes);
                         }
                     });
 

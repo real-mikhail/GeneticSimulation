@@ -24,13 +24,13 @@ namespace GeneticSimulation
         private static void Main()
         {
             // TODO: Use contracts everywhere?
-            // TODO: Fix comments and other stuff
-            // TODO: Fix GC hell (reduce memory traffic)
+            // TODO: Fix comments, indentation and other stuff
+            // TODO: Fix GC hell (reduce memory traffic), introduce caching
             var universe = new World();
             var list = Enumerable.Range(1, 8).Select(
                 _ =>
                     {
-                        universe.Run(13);
+                        universe.Run(16);
                         Console.Write("-=>");
                         return universe.Statistic;
                     }).ToList();
