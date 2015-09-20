@@ -70,7 +70,7 @@ namespace MZ.GeneticSimulation
         {
             Requires<ArgumentNullException>(statistics != null);
             Requires<ArgumentException>(statistics.Count > 0, "There is no any statistic. WTF!");
-            ForegroundColor = ConsoleColor.Blue;
+            ForegroundColor = ConsoleColor.Yellow;
             
             // Print header
             WriteLine("\t\t\tPOPULATION");
