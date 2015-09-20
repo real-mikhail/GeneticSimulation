@@ -150,8 +150,7 @@
     <Compile Include="Helpers\Cache.cs" />
     <Compile Include="Helpers\EnumHelper.cs" />
     <Compile Include="Helpers\ExtensionHelper.cs" />
-    <Compile Include="DataModel\Genes\CustomGene.cs" />
-    <Compile Include="DataModel\Genes\Gene.cs" />
+    <Compile Include="DataModel\Gene.cs" />
     <Compile Include="DataModel\Creature.cs" />
     <Compile Include="Helpers\RandomProvider.cs" />
     <Compile Include="Program.cs" />

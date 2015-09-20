@@ -15,7 +15,6 @@ namespace MZ.GeneticSimulation.DataModel
     using System.Diagnostics.Contracts;
     using System.Linq;
 
-    using MZ.GeneticSimulation.DataModel.Genes;
     using MZ.GeneticSimulation.Helpers;
     
     /// <summary>

@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace MZ.GeneticSimulation.DataModel.Genes
+namespace MZ.GeneticSimulation.DataModel
 {
     /// <summary>
     /// The gene.
