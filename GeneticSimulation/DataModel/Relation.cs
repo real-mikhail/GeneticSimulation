@@ -10,32 +10,32 @@
 namespace MZ.GeneticSimulation.DataModel
 {
     /// <summary>
-    /// The relation.
+    ///     The relation.
     /// </summary>
     public enum Relation
     {
         /// <summary>
-        /// The child.
+        ///     The child.
         /// </summary>
         Child,
 
         /// <summary>
-        /// The brother or sister.
+        ///     The brother or sister.
         /// </summary>
         BrotherOrSister,
 
         /// <summary>
-        /// The grand child.
+        ///     The grand child.
         /// </summary>
         GrandChild,
 
         /// <summary>
-        /// The nephew or niece.
+        ///     The nephew or niece.
         /// </summary>
         NephewOrNiece,
 
         /// <summary>
-        /// The cousin.
+        ///     The cousin.
         /// </summary>
         Cousin
     }

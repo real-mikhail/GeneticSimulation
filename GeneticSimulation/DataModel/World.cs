@@ -9,7 +9,6 @@
 
 namespace MZ.GeneticSimulation.DataModel
 {
-    using System;
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
@@ -18,26 +17,26 @@ namespace MZ.GeneticSimulation.DataModel
     using MZ.GeneticSimulation.Helpers;
 
     /// <summary>
-    /// The world.
+    ///     The world.
     /// </summary>
     public class World
     {
         /// <summary>
-        /// The species.
+        ///     The species.
         /// </summary>
         public readonly List<Creature>[] Species = new List<Creature>[8];
 
         /// <summary>
-        /// The age.
+        ///     The age.
         /// </summary>
         private int age = 1;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="World"/> class.
+        ///     Initializes a new instance of the <see cref="World" /> class.
         /// </summary>
         public World()
         {
-            for (int i = 0; i < this.Species.Length; i++)
+            for (var i = 0; i < this.Species.Length; i++)
             {
                 this.Species[i] = new List<Creature>(65536);
                 this.Species[i].AddRange(Enumerable.Range(0, 1024).Select(_ => new Creature(i, this)));
@@ -45,12 +44,12 @@ namespace MZ.GeneticSimulation.DataModel
         }
 
         /// <summary>
-        /// Gets the statistic.
+        ///     Gets the statistic.
         /// </summary>
         public Statistic Statistic => new Statistic(this.Age, this);
 
         /// <summary>
-        /// The age.
+        ///     The age.
         /// </summary>
         public int Age => this.age;
 
@@ -60,7 +59,7 @@ namespace MZ.GeneticSimulation.DataModel
         /// </param>
         public void Run(int generations)
         {
-            for (int i = 0; i < generations; i++, this.age = this.Age + 1)
+            for (var i = 0; i < generations; i++, this.age = this.Age + 1)
             {
                 this.SelectBest();
                 this.MakeChildren();
@@ -70,15 +69,17 @@ namespace MZ.GeneticSimulation.DataModel
         }
 
         /// <summary>
-        /// The select best.
+        ///     The select best.
         /// </summary>
         private void SelectBest()
         {
             var allCreatures = new List<Creature>(this.Species.Sum(kind => kind.Count));
             allCreatures.AddRange(this.Species.SelectMany(kind => kind));
             allCreatures =
-                allCreatures.OrderByDescending(creature => creature.SummaryStrength).Take(allCreatures.Count >> 1).ToList();
-            for (int i = 0; i < this.Species.Length; i++)
+                allCreatures.OrderByDescending(creature => creature.SummaryStrength)
+                    .Take(allCreatures.Count >> 1)
+                    .ToList();
+            for (var i = 0; i < this.Species.Length; i++)
             {
                 this.Species[i].ForEach(creature => creature.BreakRedundantConnections());
                 this.Species[i].Clear();
@@ -87,23 +88,23 @@ namespace MZ.GeneticSimulation.DataModel
         }
 
         /// <summary>
-        /// The make children.
+        ///     The make children.
         /// </summary>
         private void MakeChildren()
         {
             Parallel.For(
-                0, 
-                this.Species.Length, 
+                0,
+                this.Species.Length,
                 i =>
                     {
                         var temp = new List<Creature>(this.Species[i].Count << 1);
 
                         // Random parents (of same species) - for supporting different genes
                         this.Species[i].Shuffle();
-                        Random rnd = RandomProvider.GetThreadRandom();
-                        for (int j = 1; j < this.Species[i].Count; j += 2)
+                        var rnd = RandomProvider.GetThreadRandom();
+                        for (var j = 1; j < this.Species[i].Count; j += 2)
                         {
-                            double value = rnd.NextDouble();
+                            var value = rnd.NextDouble();
                             if (value < 0.33)
                             {
                                 temp.Add(new Creature(this.Species[i][j - 1], this.Species[i][j]));
@@ -134,7 +135,7 @@ namespace MZ.GeneticSimulation.DataModel
         }
 
         /// <summary>
-        /// The mutate.
+        ///     The mutate.
         /// </summary>
         private void Mutate()
         {

@@ -14,15 +14,15 @@ namespace MZ.GeneticSimulation.Helpers
     using MZ.GeneticSimulation.DataModel;
 
     /// <summary>
-    /// The enum helper.
+    ///     The enum helper.
     /// </summary>
     internal static class EnumHelper
     {
         /// <summary>
-        /// The create random gene.
+        ///     The create random gene.
         /// </summary>
         /// <returns>
-        /// The <see cref="Gene"/>.
+        ///     The <see cref="Gene" />.
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Gene CreateRandomGene()
@@ -31,16 +31,16 @@ namespace MZ.GeneticSimulation.Helpers
         }
 
         /// <summary>
-        /// The choose random gene.
+        ///     The choose random gene.
         /// </summary>
         /// <param name="gene1">
-        /// The gene 1.
+        ///     The gene 1.
         /// </param>
         /// <param name="gene2">
-        /// The gene 2.
+        ///     The gene 2.
         /// </param>
         /// <returns>
-        /// The <see cref="Gene"/>.
+        ///     The <see cref="Gene" />.
         /// </returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Gene ChooseRandomGene(Gene gene1, Gene gene2)

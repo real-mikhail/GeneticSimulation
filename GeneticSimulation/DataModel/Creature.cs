@@ -16,9 +16,9 @@ namespace MZ.GeneticSimulation.DataModel
     using System.Linq;
 
     using MZ.GeneticSimulation.Helpers;
-    
+
     /// <summary>
-    /// The person.
+    ///     The person.
     /// </summary>
     public class Creature
     {
@@ -27,41 +27,41 @@ namespace MZ.GeneticSimulation.DataModel
         private const int GeneStrength = 128;
 
         /// <summary>
-        /// The id of species.
         /// </summary>
-        public readonly int IdOfSpecies;
+        private readonly List<Creature> childs = new List<Creature>(8);
 
         /// <summary>
-        /// The genes.
+        ///     The genes.
         /// </summary>
         private readonly Gene[] genes = new Gene[128];
 
         /// <summary>
+        ///     The id of species.
         /// </summary>
-        private readonly List<Creature> childs = new List<Creature>(8);
+        public readonly int IdOfSpecies;
 
         /// <summary>
         /// </summary>
         private readonly World world;
 
         /// <summary>
-        /// The mother.
-        /// </summary>
-        private Creature mother;
-
-        /// <summary>
-        /// The father.
+        ///     The father.
         /// </summary>
         private Creature father;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Creature"/> class.
+        ///     The mother.
+        /// </summary>
+        private Creature mother;
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="Creature" /> class.
         /// </summary>
         /// <param name="idOfSpecies">
-        /// The id of species.
+        ///     The id of species.
         /// </param>
         /// <param name="world">
-        /// The world.
+        ///     The world.
         /// </param>
         public Creature(int idOfSpecies, World world)
         {
@@ -69,20 +69,20 @@ namespace MZ.GeneticSimulation.DataModel
             Contract.Ensures(this.IdOfSpecies == idOfSpecies);
             this.IdOfSpecies = idOfSpecies;
             this.world = world;
-            for (int i = 0; i < this.genes.Length; i++)
+            for (var i = 0; i < this.genes.Length; i++)
             {
                 this.genes[i] = EnumHelper.CreateRandomGene();
             }
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Creature"/> class.
+        ///     Initializes a new instance of the <see cref="Creature" /> class.
         /// </summary>
         /// <param name="mommy">
-        /// The mommy.
+        ///     The mommy.
         /// </param>
         /// <param name="daddy">
-        /// The daddy.
+        ///     The daddy.
         /// </param>
         public Creature(Creature mommy, Creature daddy)
         {
@@ -93,30 +93,30 @@ namespace MZ.GeneticSimulation.DataModel
             daddy.childs.Add(this);
             this.world = mommy.world;
             this.IdOfSpecies = mommy.IdOfSpecies;
-            for (int i = 0; i < this.genes.Length; i++)
+            for (var i = 0; i < this.genes.Length; i++)
             {
                 this.genes[i] = EnumHelper.ChooseRandomGene(mommy.genes[i], daddy.genes[i]);
             }
         }
-        
+
         /// <summary>
-        /// Gets the strength.
+        ///     Gets the strength.
         /// </summary>
         public int SummaryStrength
         {
             get
             {
-                double sum = 0.0;
-                World world = this.world;
+                var sum = 0.0;
+                var world = this.world;
                 string cacheKey = $"AltruisticGenesOutStrength{this.IdOfSpecies}";
-                object cachedValue = Cache.Get(cacheKey, world.Age);
+                var cachedValue = Cache.Get(cacheKey, world.Age);
                 if (cachedValue != null)
                 {
                     sum = (double)cachedValue;
                 }
                 else
                 {
-                    for (int i = 0; i < world.Species[this.IdOfSpecies].Count; i++)
+                    for (var i = 0; i < world.Species[this.IdOfSpecies].Count; i++)
                     {
                         if (world.Species[this.IdOfSpecies][i] != this)
                         {
@@ -154,10 +154,10 @@ namespace MZ.GeneticSimulation.DataModel
         {
             get
             {
-                int sum = 0;
-                for (int i = 0; i < this.genes.Length; i++)
+                var sum = 0;
+                for (var i = 0; i < this.genes.Length; i++)
                 {
-                    Gene gene = this.genes[i];
+                    var gene = this.genes[i];
                     if (gene == Gene.AltruisticGene)
                     {
                         sum += GeneStrength >> 1;
@@ -174,8 +174,8 @@ namespace MZ.GeneticSimulation.DataModel
         {
             get
             {
-                Creature mommy = this.mother;
-                Creature daddy = this.father;
+                var mommy = this.mother;
+                var daddy = this.father;
                 if (mommy == null)
                 {
                     return 0;
@@ -216,14 +216,14 @@ namespace MZ.GeneticSimulation.DataModel
         }
 
         /// <summary>
-        /// The mutate.
+        ///     The mutate.
         /// </summary>
         public void Mutate()
         {
             // Tries to change 6 genes with 50% probability
-            int length = this.genes.Length;
-            int rnd = RandomProvider.GetThreadRandom().Next(length << 1);
-            int limit = Math.Min(length, rnd + 6);
+            var length = this.genes.Length;
+            var rnd = RandomProvider.GetThreadRandom().Next(length << 1);
+            var limit = Math.Min(length, rnd + 6);
             for (; rnd < limit; rnd++)
             {
                 this.genes[rnd] = EnumHelper.CreateRandomGene();
@@ -234,8 +234,8 @@ namespace MZ.GeneticSimulation.DataModel
         /// </summary>
         public void BreakRedundantConnections()
         {
-            Creature mommy = this.mother;
-            Creature daddy = this.father;
+            var mommy = this.mother;
+            var daddy = this.father;
             if (mommy?.mother?.mother != null)
             {
                 mommy.mother.mother?.childs.Clear();
@@ -262,13 +262,13 @@ namespace MZ.GeneticSimulation.DataModel
         /// <param name="whoAreYou">
         /// </param>
         /// <returns>
-        /// The <see cref="double"/>.
+        ///     The <see cref="double" />.
         /// </returns>
         private double GetSelfishGenesOutStrength(Relation whoAreYou)
         {
-            Creature mommy = this.mother;
-            Creature daddy = this.father;
-            int summarySelfishStrength = this.genes.Sum(g => g == Gene.SelfishGene ? GeneStrength >> 1 : 0);
+            var mommy = this.mother;
+            var daddy = this.father;
+            var summarySelfishStrength = this.genes.Sum(g => g == Gene.SelfishGene ? GeneStrength >> 1 : 0);
             switch (whoAreYou)
             {
                 case Relation.Child:

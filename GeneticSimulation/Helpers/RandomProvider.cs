@@ -13,26 +13,26 @@ namespace MZ.GeneticSimulation.Helpers
     using System.Threading;
 
     /// <summary>
-    /// The random provider.
+    ///     The random provider.
     /// </summary>
     internal static class RandomProvider
     {
         /// <summary>
-        /// The random wrapper.
+        ///     The random wrapper.
         /// </summary>
         private static readonly ThreadLocal<Random> RandomWrapper =
             new ThreadLocal<Random>(() => new Random(Interlocked.Increment(ref seed)));
 
         /// <summary>
-        /// The seed.
+        ///     The seed.
         /// </summary>
         private static int seed = Environment.TickCount;
 
         /// <summary>
-        /// The get thread random.
+        ///     The get thread random.
         /// </summary>
         /// <returns>
-        /// The <see cref="Random"/>.
+        ///     The <see cref="Random" />.
         /// </returns>
         public static Random GetThreadRandom()
         {
