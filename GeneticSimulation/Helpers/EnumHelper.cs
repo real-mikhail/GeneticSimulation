@@ -31,7 +31,7 @@ namespace MZ.GeneticSimulation.Helpers
         }
 
         /// <summary>
-        ///    Chooses random gene.
+        ///     Chooses random gene.
         /// </summary>
         /// <param name="gene1">
         ///     Option 1.

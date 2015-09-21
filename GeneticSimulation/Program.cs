@@ -34,7 +34,6 @@ namespace MZ.GeneticSimulation
         /// </summary>
         private static void Main()
         {
-            // TODO: Fix comments, indentation and other stuff
             var begin = DateTime.UtcNow;
             var previous = DateTime.UtcNow;
             var universe = new World();
