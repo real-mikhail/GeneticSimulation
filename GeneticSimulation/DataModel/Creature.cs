@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Creature.cs" company="">
-//   
+// <copyright file="Creature.cs" company="MZ">
+//   This work is licensed under a Creative Commons Attribution 4.0 International License
 // </copyright>
 // <summary>
-//   The person.
+//   The creature.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -18,20 +18,22 @@ namespace MZ.GeneticSimulation.DataModel
     using MZ.GeneticSimulation.Helpers;
 
     /// <summary>
-    ///     The person.
+    ///     The creature.
     /// </summary>
     public class Creature
     {
         /// <summary>
+        ///     Basic "strength" of gene
         /// </summary>
         private const int GeneStrength = 128;
 
         /// <summary>
+        ///     List of child creatures
         /// </summary>
         private readonly List<Creature> childs = new List<Creature>(8);
 
         /// <summary>
-        ///     The genes.
+        ///     Genes.
         /// </summary>
         private readonly Gene[] genes = new Gene[128];
 
@@ -41,16 +43,17 @@ namespace MZ.GeneticSimulation.DataModel
         public readonly int IdOfSpecies;
 
         /// <summary>
+        ///     Reference to world where this creature lives.
         /// </summary>
         private readonly World world;
 
         /// <summary>
-        ///     The father.
+        ///     The father of this creature.
         /// </summary>
         private Creature father;
 
         /// <summary>
-        ///     The mother.
+        ///     The mother of this creature.
         /// </summary>
         private Creature mother;
 
@@ -100,7 +103,7 @@ namespace MZ.GeneticSimulation.DataModel
         }
 
         /// <summary>
-        ///     Gets the strength.
+        ///     Gets the strength of this creature.
         /// </summary>
         public int SummaryStrength
         {
@@ -132,23 +135,28 @@ namespace MZ.GeneticSimulation.DataModel
         }
 
         /// <summary>
+        ///     Gets number of selfish genes (in this creature).
         /// </summary>
         public int SelfishGenes => this.genes.Count(g => g == Gene.SelfishGene);
 
         /// <summary>
+        ///     Gets number of altruistic genes (in this creature).
         /// </summary>
         public int AltruisticGenes => this.genes.Count(g => g == Gene.AltruisticGene);
 
         /// <summary>
+        ///     Gets number of creature_level genes (in this creature).
         /// </summary>
         public int CreatureLevelGenes => this.genes.Count(g => g == Gene.CreatureLevelGene);
 
         /// <summary>
+        ///     Gets strength of this creature which was given it by its genes.
         /// </summary>
         private int ThisCreatureGenesStrength
             => this.genes.Sum(g => g == Gene.CreatureLevelGene ? GeneStrength : GeneStrength >> 1);
 
         /// <summary>
+        ///     Gets strength which is given to all creatures of same species by this creature.
         /// </summary>
         private double AltruisticGenesOutStrength
         {
@@ -169,6 +177,7 @@ namespace MZ.GeneticSimulation.DataModel
         }
 
         /// <summary>
+        ///     Gets strength which was took by this creature from its relations.
         /// </summary>
         private double HelpFromRelations
         {
@@ -216,7 +225,7 @@ namespace MZ.GeneticSimulation.DataModel
         }
 
         /// <summary>
-        ///     The mutate.
+        ///     Mutates creature.
         /// </summary>
         public void Mutate()
         {
@@ -231,6 +240,7 @@ namespace MZ.GeneticSimulation.DataModel
         }
 
         /// <summary>
+        ///     Breaks connection with unused grandparents.
         /// </summary>
         public void BreakRedundantConnections()
         {
@@ -258,11 +268,13 @@ namespace MZ.GeneticSimulation.DataModel
         }
 
         /// <summary>
+        ///     Gets strength which is given to relation by this creature.
         /// </summary>
         /// <param name="whoAreYou">
+        ///     Type of relation.
         /// </param>
         /// <returns>
-        ///     The <see cref="double" />.
+        ///     The strength.
         /// </returns>
         private double GetSelfishGenesOutStrength(Relation whoAreYou)
         {

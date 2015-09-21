@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="ExtensionHelper.cs" company="">
-//   
+// <copyright file="ExtensionHelper.cs" company="MZ">
+//   This work is licensed under a Creative Commons Attribution 4.0 International License
 // </copyright>
 // <summary>
 //   The extension helper.
@@ -21,12 +21,13 @@ namespace MZ.GeneticSimulation.Helpers
     internal static class ExtensionHelper
     {
         /// <summary>
-        ///     The shuffle.
+        ///     Shuffles list.
         /// </summary>
         /// <param name="list">
         ///     The list.
         /// </param>
         /// <typeparam name="T">
+        ///     Type of items
         /// </typeparam>
         public static void Shuffle<T>(this IList<T> list)
         {
@@ -41,18 +42,19 @@ namespace MZ.GeneticSimulation.Helpers
         }
 
         /// <summary>
-        ///     The swap.
+        ///     Swaps to items in the list
         /// </summary>
         /// <param name="list">
         ///     The list.
         /// </param>
         /// <param name="index1">
-        ///     The index 1.
+        ///     The index of item 1.
         /// </param>
         /// <param name="index2">
-        ///     The index 2.
+        ///     The index of item 2.
         /// </param>
         /// <typeparam name="T">
+        ///     Type of items
         /// </typeparam>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Swap<T>(this IList<T> list, int index1, int index2)

@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Cache.cs" company="">
-//   
+// <copyright file="Cache.cs" company="MZ">
+//   This work is licensed under a Creative Commons Attribution 4.0 International License
 // </copyright>
 // <summary>
 //   The cache.
@@ -19,18 +19,18 @@ namespace MZ.GeneticSimulation.Helpers
     internal static class Cache
     {
         /// <summary>
-        ///     The sync.
+        ///     The sync object.
         /// </summary>
         private static readonly object Sync = new object();
 
         /// <summary>
-        ///     The store.
+        ///     The storage.
         /// </summary>
         private static readonly Dictionary<string, Tuple<int, object>> Store =
             new Dictionary<string, Tuple<int, object>>();
 
         /// <summary>
-        ///     The clear.
+        ///     Clears storage
         /// </summary>
         public static void Clear()
         {
@@ -41,7 +41,7 @@ namespace MZ.GeneticSimulation.Helpers
         }
 
         /// <summary>
-        ///     The put.
+        ///     Puts object to storage.
         /// </summary>
         /// <param name="key">
         ///     The key.
@@ -64,16 +64,16 @@ namespace MZ.GeneticSimulation.Helpers
         }
 
         /// <summary>
-        ///     The get.
+        ///     Gets cached value.
         /// </summary>
         /// <param name="key">
         ///     The key.
         /// </param>
         /// <param name="age">
-        ///     The age.
+        ///     Required age of stored value.
         /// </param>
         /// <returns>
-        ///     The <see cref="object" />.
+        ///     Cached value, null - if there is no appropriate value
         /// </returns>
         public static object Get(string key, int age)
         {

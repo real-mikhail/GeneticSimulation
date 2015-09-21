@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Program.cs" company="">
-//   
+// <copyright file="Program.cs" company="MZ">
+//   This work is licensed under a Creative Commons Attribution 4.0 International License
 // </copyright>
 // <summary>
-//   The program.
+//   Main program (entry class).
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -25,11 +25,12 @@ namespace MZ.GeneticSimulation
     internal static class Program
     {
         /// <summary>
+        ///     Iteration number
         /// </summary>
         private const int IterationsNumber = 128;
 
         /// <summary>
-        ///     The main.
+        ///     Entry point.
         /// </summary>
         private static void Main()
         {
@@ -62,7 +63,7 @@ namespace MZ.GeneticSimulation
         }
 
         /// <summary>
-        ///     The print population info.
+        ///     Prints population info.
         /// </summary>
         /// <param name="statistics">
         ///     The statistics.
@@ -100,7 +101,7 @@ namespace MZ.GeneticSimulation
         }
 
         /// <summary>
-        ///     The print genes info.
+        ///     Prints genes info.
         /// </summary>
         /// <param name="statistics">
         ///     The statistics.

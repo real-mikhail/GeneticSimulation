@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="World.cs" company="">
-//   
+// <copyright file="World.cs" company="MZ">
+//   This work is licensed under a Creative Commons Attribution 4.0 International License
 // </copyright>
 // <summary>
 //   The world.
@@ -27,7 +27,7 @@ namespace MZ.GeneticSimulation.DataModel
         public readonly List<Creature>[] Species = new List<Creature>[8];
 
         /// <summary>
-        ///     The age.
+        ///     The age of this world.
         /// </summary>
         private int age = 1;
 
@@ -49,13 +49,15 @@ namespace MZ.GeneticSimulation.DataModel
         public Statistic Statistic => new Statistic(this.Age, this);
 
         /// <summary>
-        ///     The age.
+        ///     Gets the age.
         /// </summary>
         public int Age => this.age;
 
         /// <summary>
+        ///     Simulates evolution.
         /// </summary>
         /// <param name="generations">
+        ///     Number of iterations of simulation.
         /// </param>
         public void Run(int generations)
         {
@@ -69,7 +71,7 @@ namespace MZ.GeneticSimulation.DataModel
         }
 
         /// <summary>
-        ///     The select best.
+        ///     Selects best creatures.
         /// </summary>
         private void SelectBest()
         {
@@ -88,7 +90,7 @@ namespace MZ.GeneticSimulation.DataModel
         }
 
         /// <summary>
-        ///     The make children.
+        ///     Creates new generation of creatures.
         /// </summary>
         private void MakeChildren()
         {
@@ -135,7 +137,7 @@ namespace MZ.GeneticSimulation.DataModel
         }
 
         /// <summary>
-        ///     The mutate.
+        ///     Mutates current generation of creatures.
         /// </summary>
         private void Mutate()
         {

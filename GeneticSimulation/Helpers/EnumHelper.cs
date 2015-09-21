@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="EnumHelper.cs" company="">
-//   
+// <copyright file="EnumHelper.cs" company="MZ">
+//   This work is licensed under a Creative Commons Attribution 4.0 International License
 // </copyright>
 // <summary>
 //   The enum helper.
@@ -19,7 +19,7 @@ namespace MZ.GeneticSimulation.Helpers
     internal static class EnumHelper
     {
         /// <summary>
-        ///     The create random gene.
+        ///     Creates random gene.
         /// </summary>
         /// <returns>
         ///     The <see cref="Gene" />.
@@ -31,13 +31,13 @@ namespace MZ.GeneticSimulation.Helpers
         }
 
         /// <summary>
-        ///     The choose random gene.
+        ///    Chooses random gene.
         /// </summary>
         /// <param name="gene1">
-        ///     The gene 1.
+        ///     Option 1.
         /// </param>
         /// <param name="gene2">
-        ///     The gene 2.
+        ///     Option 2.
         /// </param>
         /// <returns>
         ///     The <see cref="Gene" />.

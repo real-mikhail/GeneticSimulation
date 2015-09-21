@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Statistic.cs" company="">
-//   
+// <copyright file="Statistic.cs" company="MZ">
+//   This work is licensed under a Creative Commons Attribution 4.0 International License
 // </copyright>
 // <summary>
 //   The statistic.
@@ -21,7 +21,7 @@ namespace MZ.GeneticSimulation
     public class Statistic
     {
         /// <summary>
-        ///     The age.
+        ///     The age of this copy of statistic.
         /// </summary>
         public readonly int Age;
 

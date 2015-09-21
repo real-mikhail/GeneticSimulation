@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Gene.cs" company="">
-//   
+// <copyright file="Gene.cs" company="MZ">
+//   This work is licensed under a Creative Commons Attribution 4.0 International License
 // </copyright>
 // <summary>
-//   The gene.
+//   Defines possible genes.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
