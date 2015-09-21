@@ -36,7 +36,6 @@ namespace MZ.GeneticSimulation.Helpers
         /// </returns>
         public static Random GetThreadRandom()
         {
-            // TODO: Optimize it
             return RandomWrapper.Value;
         }
     }

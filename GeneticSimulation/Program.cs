@@ -33,7 +33,6 @@ namespace MZ.GeneticSimulation
         private static void Main()
         {
             // TODO: Fix comments, indentation and other stuff
-            // TODO: Fix GC hell (reduce memory traffic)
             DateTime begin = DateTime.UtcNow;
             DateTime previous = DateTime.UtcNow;
             var universe = new World();

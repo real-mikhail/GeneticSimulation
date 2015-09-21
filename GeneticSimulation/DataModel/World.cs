@@ -74,7 +74,6 @@ namespace MZ.GeneticSimulation.DataModel
         /// </summary>
         private void SelectBest()
         {
-            // TODO: Parallelize it and optimize
             var allCreatures = new List<Creature>(this.Species.Sum(kind => kind.Count));
             allCreatures.AddRange(this.Species.SelectMany(kind => kind));
             allCreatures =

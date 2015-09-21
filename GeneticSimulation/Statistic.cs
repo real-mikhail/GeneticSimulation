@@ -10,6 +10,7 @@
 namespace MZ.GeneticSimulation
 {
     using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -41,7 +42,7 @@ namespace MZ.GeneticSimulation
         /// </param>
         public Statistic(int age, World world)
         {
-            // TODO: Check world for null
+            Debug.Assert(world != null);
             this.Age = age;
             this.SpeciesNumber = world.Species.Length;
             this.PopulationInfo = new int[this.SpeciesNumber];

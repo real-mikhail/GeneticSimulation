@@ -224,8 +224,6 @@ namespace MZ.GeneticSimulation.DataModel
             int length = this.genes.Length;
             int rnd = RandomProvider.GetThreadRandom().Next(length << 1);
             int limit = Math.Min(length, rnd + 6);
-
-            // TODO: Potentially incorrect - only first half of genes is mutated
             for (; rnd < limit; rnd++)
             {
                 this.genes[rnd] = EnumHelper.CreateRandomGene();
@@ -238,8 +236,6 @@ namespace MZ.GeneticSimulation.DataModel
         {
             Creature mommy = this.mother;
             Creature daddy = this.father;
-
-            // TODO: I suppose it is a .NET bug (we should not clear list of childs?) Fix it and send to github/dotnet
             if (mommy?.mother?.mother != null)
             {
                 mommy.mother.mother?.childs.Clear();

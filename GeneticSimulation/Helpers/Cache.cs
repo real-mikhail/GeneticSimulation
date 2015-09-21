@@ -12,9 +12,7 @@ namespace MZ.GeneticSimulation.Helpers
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
-
-    // TODO: Optimize it
-
+    
     /// <summary>
     /// The cache.
     /// </summary>
